@@ -14,7 +14,7 @@ function App() {
 
     <button onClick={() => setTheme(prevTheme => {
       return prevTheme === 'green' ? 'blue' : 'green'
-    })}>Toggle Theme</button>
+    })}>Toggle Theme!</button>
 
     </ThemeContext.Provider>
   )
