@@ -4,10 +4,10 @@ import '../css/app.css'
 import uuidv4 from 'uuid/v4'
 import RecipeEdit from './RecipeEdit';
 
-export const RecipeContext = React.createContext()
+// export const RecipeContext = React.createContext()
 const LOCAL_STORAGE_KEY = 'cookingWithReact.recipes'
 
-function App() {
+function Apps() {
   const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [recipes, setRecipes] = useState(sampleRecipes)
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
@@ -21,12 +21,10 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
   }, [recipes])
 
-  const recipeContextValue = {
-    handleRecipeAdd,
-    handleRecipeDelete,
-    handleRecipeSelect,
-    handleRecipeChange
-  }
+  // const recipeContextValue = {
+  //   handleRecipeDelete,
+  //   handleRecipeSelect
+  // }
 
   function handleRecipeSelect(id) {
     setSelectedRecipeId(id)
@@ -40,29 +38,24 @@ function App() {
       cookTime: '1:00',
       instructions: 'Instr.',
       ingredients: [
-        { id: uuidv4(), name: 'Name', amount: '1 Tbs' }
+        { id: uuidv4(), name: 'Beef', amount: '1 Tbs' }
       ]
     }
-    setSelectedRecipeId(newRecipe.id)
+    // what is happening here?
     setRecipes([...recipes, newRecipe])
   }
 
-  function handleRecipeChange(id, recipe) {
-    const newRecipes = [...recipes]
-    const index = newRecipes.findIndex(r => r.id === id)
-    newRecipes[index] = recipe
-    setRecipes(newRecipes)
-  }
 
   function handleRecipeDelete(id) {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
   return (
-    <RecipeContext.Provider value={recipeContextValue}>
-      <RecipeList recipes={recipes} />
+    <div>
+      {/* below is a prop */}
+      <RecipeList recipes={recipes} handleRecipeAdd={handleRecipeAdd} handleRecipeDelete={handleRecipeDelete} handleRecipeSelect={handleRecipeSelect}/>
       {selectedRecipe && <RecipeEdit recipe={selectedRecipe} />}
-    </RecipeContext.Provider>
+    </div>
   )
 }
 
@@ -107,4 +100,4 @@ const sampleRecipes = [
   }
 ]
 
-export default App;
+export default Apps;
