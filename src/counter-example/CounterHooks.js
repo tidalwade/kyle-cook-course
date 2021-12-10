@@ -1,19 +1,20 @@
 import React, { useState, useContext } from 'react'
 import { ThemeContext } from './App'
 
-
 //USING COUNT NUMBER ONLY. NOT USING STATE OBJECT - MORE SIMPLISTIC
 export default function CounterHooks({ initialCount }) {
-    const [count, setCount] = useState(initialCount)
-    const style = useContext(ThemeContext)
-    return (
+  console.log('Render Counter Hooks')
+  const [count, setCount] = useState(initialCount)
+  const style = useContext(ThemeContext)
+  return (
     <div>
-    <button style={style} onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-    <span>{count}</span>
-    <button style={style} onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+      <button style={style} onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <span>{count}</span>
+      <button style={style} onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </div>
-    )
+  )
 }
+
 
 //USING FULL SATE OBJECT
 // export default function CounterHooks({ initialCount}) {

@@ -7,6 +7,7 @@ export default function RecipeEdit({ recipe }) {
   const { handleRecipeChange, handleRecipeSelect } = useContext(RecipeContext)
 
   function handleChange(changes) {
+    console.log(recipe.id)
     handleRecipeChange(recipe.id, { ...recipe, ...changes })
   }
 
